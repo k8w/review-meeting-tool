@@ -1,1 +1,0 @@
-{"meetingId":1463475778358,"step":"check","checkData":[],"tagDatas":[],"voteData":[]}
