@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit" />
+    <title>龙胜开会</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <style>
+        .sans-serif{
+            font-family: "Helvetica Neue",helvetica,'lucida grande','lucida sans unicode',lucida,'Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei',sans-serif;
+        }
+        .serif{
+            font-family: Tahoma, Helvetica, Arial, "宋体", sans-serif;
+        }
+
+        html,body{
+            padding: 0;
+            margin: 0 auto;
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+            max-width: 640px;
+        }
+        html{
+            padding: 20px;
+        }
+
+        button,input,textarea,select,.btn{
+            display: block;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            line-height: 1.5em;
+        }
+
+        .btn{
+            background: #eee;
+            border:solid 1px #bbb;
+            border-bottom: solid 4px #999;
+        }
+        .btn:hover, .btn:active{
+            background: #ddd;
+            cursor: pointer;
+        }
+
+        .modal{
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            padding-top: 150px;
+            background: rgba(255,255,255,0.9);
+            text-align: center;
+            font-size: x-large;
+        }
+
+        #light{
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            width: 10px;
+            height: 10px;
+            border-radius: 99px;
+            background: green;
+            font-size: 0px;
+            z-index: 9999;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="main">
+    <div id="check" hidden>
+        <h1>安全检查</h1>
+        <p>对于目前的发言环境，我的态度是：</p>
+        <a data-score="5" class="btn">5分：我能够畅所欲言，积极参与</a>
+        <a data-score="4" class="btn">4分：会谨慎，但仍会积极参与</a>
+        <a data-score="3" class="btn">3分：有顾虑，但若大家积极我也会参加</a>
+        <a data-score="2" class="btn">2分：不感兴趣，没什么想说的</a>
+        <a data-score="1" class="btn">1分：我 现 在 就 想 走 ！</a>
+    </div>
+
+    <div id="meeting" hidden>
+        <h1>发表观点</h1>
+        <p>想说的</p>
+        <form>
+        <select id="msg-type">
+            <option value="well">好的（Well）</option>
+            <option value="less">不好的（Less）</option>
+            <option value="suggestion">建议（Suggestion）</option>
+        </select>
+        <textarea id="msg-content" placeholder="力求言简意赅..." rows="5"></textarea>
+        <!--<p>分类</p>-->
+        <!--<input id="msg-tag" type="text" placeholder="技术/产品/管理/..." />-->
+        <button id="msg-submit">提 交</button>
+        </form>
+    </div>
+
+    <div id="vote" hidden>
+        <h1>投票</h1>
+        <p>此刻我最想讨论的是：（可以重复，最多2项）</p>
+        <select multiple id="vote-select">
+        </select>
+
+        <button id="vote-submit">提交</button>
+    </div>
+</div>
+
+<div class="modal" hidden></div>
+
+<div id="light"></div>
+
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="js/user.js"></script>
+</body>
+</html>

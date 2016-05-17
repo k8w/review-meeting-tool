@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="3">
+    <title>安检结果 - 龙胜开会</title>
+    <style>
+        body{
+            font-size: 1.5em;
+            font-family: 'Microsoft YaHei';
+            width: 1002px;
+            margin: 0 auto;
+        }
+        .bar{
+            margin-bottom: 20px;
+            font-weight: bold;
+            overflow: hidden;
+            text-indent: 10px;
+            padding: 10px 0;
+            height: 35px;
+            line-height: 35px;
+            word-break: keep-all;
+            border: solid 1px #333;
+        }
+        .btn{
+            text-decoration: none;
+            background: #ddd;
+            color: white;
+            padding: 20px 50px;
+            border-bottom: solid 5px #666;
+            color: #222;
+        }
+        .btn:hover{
+            background: #eee;
+            border-bottom-color: #aaa;
+        }
+    </style>
+</head>
+<body>
+<h1>安全检查</h1>
+
+<p>共 <b id="totalSubmit"></b> 人提交，其中：</p>
+
+<div class="bar" style="background: #64ff7a; width: 0px;">5分：3人</div>
+<div class="bar" style="background: #d0ff75; width: 0px;">4分：2人</div>
+<div class="bar" style="background: #f7ff75; width: 0px;">3分：5人</div>
+<div class="bar" style="background: #ffc98a; width: 0px;">2分：0人</div>
+<div class="bar" style="background: #ff9797; width: 0px;">1分：1人</div>
+
+<!--<hr style="margin: 80px 0" />-->
+<!--<p style="text-align: center"><a class="btn" href="meeting.html">开始开会</a></p>-->
+
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+    /**
+     * data [5分，4分，3分，2分，1分]
+     * @param data
+     */
+    function setData(data){
+        var total = 0;
+        for(var i=0; i<5; ++i){
+            $('.bar').eq(i).width(data[i]*125).text((5-i)+'分：'+data[i]+'人');
+            total += data[i];
+        }
+        $('#totalSubmit').text(total)
+    }
+
+    $(function(){
+        $.getJSON('http://localhost:9876/checkResult')
+         .then(function(data){
+             setData(data.result);
+         })
+    })
+</script>
+</body>
+</html>

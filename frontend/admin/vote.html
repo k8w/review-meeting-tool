@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="3">
+    <title>投票结果 - 龙胜开会</title>
+    <style>
+        body{
+            font-family: 'Microsoft YaHei';
+            width: 1002px;
+            margin: 0 auto;
+        }
+        .bar{
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-indent: 10px;
+            padding: 10px 0;
+            height: 30px;
+            line-height: 30px;
+            word-break: keep-all;
+            background: #eee;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+<h1>话题投票</h1>
+
+<div id="result">
+
+</div>
+
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+    /**
+     * data [5分，4分，3分，2分，1分]
+     * @param data
+     */
+    function setData(data){
+        var total = 0;
+        for(var i=0; i<5; ++i){
+            $('.bar').eq(i).width(data[i]*125).text((5-i)+'分：'+data[i]+'人');
+            total += data[i];
+        }
+        $('#totalSubmit').text(total)
+    }
+
+    $(function(){
+        $.getJSON('http://localhost:9876/voteResult')
+         .then(function(data){
+             data.forEach(function (v) {
+                 $('#result').append('<div class="bar" style="width: '+(v.value*100)+'px;">'+v.name+'：'+v.value+'票</div>');
+             });
+
+         })
+    })
+</script>
+</body>
+</html>

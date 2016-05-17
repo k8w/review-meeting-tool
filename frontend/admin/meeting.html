@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发言看板 - 龙胜开会</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            font-size: 24px;
+            background: #f2f2f2;
+        }
+        body>header{
+            background: #2f2f2f;
+            padding: 20px;
+        }
+        body>header a{
+            color: #999;
+            cursor: pointer;
+            padding: 5px 20px;
+            border-radius: 99px;
+        }
+        body>header a.active,body>header a:hover,body>header a.dragover,body>header a.new.dragover{
+            color: #2f2f2f;
+            background: #f7f7f7;
+        }
+        body>header a.new,body>header a.new:hover{
+            background: transparent;
+            border: dashed 1px #666;
+            color: #666;
+        }
+
+        body>section{
+            display: flex;
+        }
+        body>section>aside{
+            flex: 1;
+        }
+        body>section>aside>div{
+            margin: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+            border:solid 1px;
+            border-top: solid 5px;
+            background: #fff;
+            line-height: 1.5em;
+        }
+        body>section>aside>div:hover{
+            background: #f7f7f7;
+            cursor: move;
+        }
+        body>section>aside>header{
+            text-align: center;
+            font-family: 'Microsoft YaHei';
+            color: white;
+            padding: 10px 0;
+            border-radius: 99px;
+            width: 250px;
+            margin: 20px auto 0 auto;
+            font-size: 18px;
+        }
+        body>section>aside.well>header{
+            background: #4eb05e
+        }
+        body>section>aside.well>div{
+            border-color: #4eb05e
+        }
+        body>section>aside.less>header{
+            background: #db5353
+        }
+        body>section>aside.less>div{
+            border-color: #db5353
+        }
+        body>section>aside.suggestion>header{
+            background: #23afea
+        }
+        body>section>aside.suggestion>div{
+            border-color: #23afea
+        }
+    </style>
+</head>
+<body>
+
+<header id="tags">
+</header>
+
+<section id="msgs">
+    <aside class="well">
+        <header>好的（Well）</header>
+    </aside>
+    <aside class="less">
+        <header>不好的（Less）</header>
+    </aside>
+    <aside class="suggestion">
+        <header>建议（Suggestion）</header>
+    </aside>
+</section>
+
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../js/meeting.js"></script>
+</body>
+</html>

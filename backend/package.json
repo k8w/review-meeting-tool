@@ -1,0 +1,17 @@
+{
+  "name": "longdata-server",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p ./src --outDir ./dist",
+    "test": "tsc -p ./src --outDir ./dist & node dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "mysql": "^2.10.2"
+  }
+}
