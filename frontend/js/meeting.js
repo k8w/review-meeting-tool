@@ -120,7 +120,7 @@ function refresh(){
     }
 
     $.ajax({
-        url: 'http://localhost:9876/updateTagDatas',
+        url: 'http://'+location.host+':9876/updateTagDatas',
         method: 'POST',
         data: JSON.stringify(tagDatas),
         dataType: 'json',
@@ -133,7 +133,7 @@ function clear() {
     refresh();
 }
 
-$.getJSON('http://localhost:9876/tagDatas', function (data) {
+$.getJSON('http://'+location.host+':9876/tagDatas', function (data) {
     tagDatas = data;
     refresh();
 })
