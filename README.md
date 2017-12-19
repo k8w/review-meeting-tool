@@ -1,25 +1,49 @@
-龙胜会议工具
+回顾会议工具
 ===============
 
-# 环境
+### 特性介绍
+1. 多人手机匿名提交提案和投票
+1. 会议环境安全检查
+1. 匿名提案
+1. 匿名投票
 
-## backend
+### 环境准备
+
+```
+npm i -g typescript
+cd frontend
+npm i
+cd backend
+npm i
+```
+
+### 环境准备
+
+```
+npm install typescript http-server -g
+cd backend
+tsc -p .
+```
 
 ### 编译
-
-    npm install typescript -g
-    cd backend
-    tsc -p .
+```
+cd backend
+tsc
+```
 
 ### 运行
+**前端**
+```
+cd frontend
+http-server -c-1 -p 80
+```
 
-    node dist
-
-## frontend
-
-    cd frontend
-    http-server -p 80
+**后台**
+```
+cd backend
+node dist
+```
 
 # 配置
-
-URL相关的基本都写死成192.168.0.76或localhost了，在其它机器使用需要替换一下
+扫码开会的二维码，IP固定死了，实际使用的时候要改一下。
+直接替换 `frontend/admin/qrcode.png` 即可

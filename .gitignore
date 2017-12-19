@@ -4,3 +4,4 @@ dist
 *.map
 frontend/shared
 backend/shared
+/backend/package-lock.json
