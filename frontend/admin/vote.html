@@ -46,7 +46,7 @@
     }
 
     $(function(){
-        $.getJSON('http://localhost:9876/voteResult')
+        $.getJSON('http://192.168.1.164:9876/voteResult')
          .then(function(data){
              data.forEach(function (v) {
                  $('#result').append('<div class="bar" style="width: '+(v.value*100)+'px;">'+v.name+'：'+v.value+'票</div>');
