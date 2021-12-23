@@ -1,31 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        body{
+        body {
             line-height: 2em;
         }
     </style>
+    <script src="../js/config.js"></script>
 </head>
+
 <body>
 
-<h1>会议导航</h1>
+    <h1>会议导航</h1>
 
-<ul>
-	<li><a target="_blank" href="http://192.168.1.164:9876/restart">会议开始</a></li>
-    <li><a target="_blank" href="entry.html">会议二维码</a></li>    
-    <br/>
-    <li><a target="_blank" href="http://192.168.1.164:9876/setStep/check">进入安全检查阶段</a></li>
-    <li><a target="_blank" href="check.html">查看安检结果</a></li>
-    <br/>
-    <li><a target="_blank" href="http://192.168.1.164:9876/setStep/meeting">进入发言阶段</a></li>
-    <li><a target="_blank" href="meeting.html">发言看板</a></li>
-    <br/>
-    <li><a target="_blank" href="http://192.168.1.164:9876/setStep/vote">进入话题投票阶段</a></li>
-    <li><a target="_blank" href="vote.html">投票结果</a></li>
+    <ul>
+        <li>
+            <script>
+                document.writeln(`<a target="_blank" href="${SERVER_URL}/restart">会议开始</a>`)
+            </script>
+        </li>
+        <li><a target="_blank" href="entry.html">会议二维码</a></li>
+        <br />
+        <li>
+            <script>document.writeln(`<a target="_blank" href="${SERVER_URL}/setStep/check">进入安全检查阶段</a>`)</script>
+        </li>
+        <li><a target="_blank" href="check.html">查看安检结果</a></li>
+        <br />
+        <li>
+            <script>document.writeln(`<a target="_blank" href="${SERVER_URL}/setStep/meeting">进入发言阶段</a>`)</script>
+        </li>
+        <li><a target="_blank" href="meeting.html">发言看板</a></li>
+        <br />
+        <li>
+            <script>document.writeln(`<a target="_blank" href="${SERVER_URL}/setStep/vote">进入话题投票阶段</a>`)</script>
+        </li>
+        <li><a target="_blank" href="vote.html">投票结果</a></li>
 
-</ul>
+    </ul>
 </body>
+
 </html>

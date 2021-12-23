@@ -2,22 +2,22 @@ var tagDatas;
 var currentTag = '未分类';
 var dragItem = null;
 
-function onDragStart(e){
+function onDragStart(e) {
     // e.originalEvent.dataTransfer.effectAllowed='move';
     dragItem = $(e.currentTarget);
 }
 
-function onDragOver(e){
+function onDragOver(e) {
     e.preventDefault();
     // e.originalEvent.dataTransfer.dropEffect='move';
     $(e.currentTarget).addClass('dragover')
 }
 
-function onDragLeave(e){
+function onDragLeave(e) {
     $(e.currentTarget).removeClass('dragover')
 }
 
-function onDragEnd(e){
+function onDragEnd(e) {
     $('#tags a').removeClass('dragover');
 }
 
@@ -27,13 +27,13 @@ function onDrop(e) {
     var toTag = $(e.currentTarget).data('tag');
     var msg;
 
-    if(toTag == '新分类'){
+    if (toTag == '新分类') {
         toTag = prompt('请输入新分类名：');
 
-        if(!toTag || toTag=='新分类'){
+        if (!toTag || toTag == '新分类') {
             return;
         }
-        else if(tagDatas.filter(v=>v.tagName==toTag).length==0){
+        else if (tagDatas.filter(v => v.tagName == toTag).length == 0) {
             tagDatas.push({
                 tagName: toTag,
                 well: [],
@@ -43,15 +43,15 @@ function onDrop(e) {
         }
     }
 
-    for(let i=0; i<tagDatas.length; i++){
-        if(tagDatas[i].tagName == fromTag){
+    for (let i = 0; i < tagDatas.length; i++) {
+        if (tagDatas[i].tagName == fromTag) {
             msg = tagDatas[i][data.type].splice([data.index], 1);
             break;
         }
     }
 
-    for(let i=0; i<tagDatas.length; i++){
-        if(tagDatas[i].tagName == toTag){
+    for (let i = 0; i < tagDatas.length; i++) {
+        if (tagDatas[i].tagName == toTag) {
             tagDatas[i][data.type].push(msg);
             break;
         }
@@ -60,25 +60,25 @@ function onDrop(e) {
     refresh();
 }
 
-function onSwitchTag(e){
+function onSwitchTag(e) {
     currentTag = $(e.currentTarget).data('tag');
     refresh();
 }
 
-function refresh(){
+function refresh() {
     //删除空TAG
-    tagDatas = tagDatas.filter(v=>v.well.length||v.less.length||v.suggestion.length);
+    tagDatas = tagDatas.filter(v => v.well.length || v.less.length || v.suggestion.length);
 
     //Header
     $('#tags').html('');
-    tagDatas.forEach(v=>{
-        let $a = $('<a>'+v.tagName+'('+(v.well.length+v.less.length+v.suggestion.length)+')'+'</a>');
+    tagDatas.forEach(v => {
+        let $a = $('<a>' + v.tagName + '(' + (v.well.length + v.less.length + v.suggestion.length) + ')' + '</a>');
         $a.data('tag', v.tagName);
         $a.on('dragover', onDragOver);
         $a.on('dragleave', onDragLeave);
         $a.on('drop', onDrop);
         $a.click(onSwitchTag);
-        if(v.tagName==currentTag){
+        if (v.tagName == currentTag) {
             $a.addClass('active');
         }
         $('#tags').append($a);
@@ -94,25 +94,25 @@ function refresh(){
 
     //Content
     $('#msgs>.well>div, #msgs>.less>div, #msgs>.suggestion>div').remove();
-    function addMsg(msg, idx, type){
+    function addMsg(msg, idx, type) {
         $div = $('<div draggable="true"></div>')
         $div.text(msg);
         $div.on('dragstart', onDragStart);
         $div.on('dragend', onDragEnd);
         $div.data('type', type);
         $div.data('index', idx);
-        $('#msgs>.'+type).append($div);
+        $('#msgs>.' + type).append($div);
     }
 
-    for(let i=0; i<tagDatas.length; ++i){
-        if(tagDatas[i].tagName == currentTag){
-            tagDatas[i].well.forEach((msg,i)=>{
+    for (let i = 0; i < tagDatas.length; ++i) {
+        if (tagDatas[i].tagName == currentTag) {
+            tagDatas[i].well.forEach((msg, i) => {
                 addMsg(msg, i, 'well');
             })
-            tagDatas[i].less.forEach((msg,i)=>{
+            tagDatas[i].less.forEach((msg, i) => {
                 addMsg(msg, i, 'less');
             })
-            tagDatas[i].suggestion.forEach((msg,i)=>{
+            tagDatas[i].suggestion.forEach((msg, i) => {
                 addMsg(msg, i, 'suggestion');
             })
             break;
@@ -120,7 +120,7 @@ function refresh(){
     }
 
     $.ajax({
-        url: 'http://'+location.host+':9876/updateTagDatas',
+        url: SERVER_URL + '/updateTagDatas',
         method: 'POST',
         data: JSON.stringify(tagDatas),
         dataType: 'json',
@@ -133,7 +133,7 @@ function clear() {
     refresh();
 }
 
-$.getJSON('http://'+location.host+':9876/tagDatas', function (data) {
+$.getJSON(SERVER_URL + '/tagDatas', function (data) {
     tagDatas = data;
     refresh();
 })

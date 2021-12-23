@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc -p ./src --outDir ./dist",
-    "test": "tsc -p ./src --outDir ./dist & node dist"
+    "build": "tsc --outDir ./dist",
+    "test": "tsc --outDir ./dist & node dist"
   },
   "author": "",
   "license": "ISC",
