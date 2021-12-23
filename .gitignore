@@ -5,3 +5,4 @@ dist
 frontend/shared
 backend/shared
 /backend/package-lock.json
+.ds_store
